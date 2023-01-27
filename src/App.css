@@ -1,5 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+
 .App {
   text-align: center;
+  font-family: 'Aboreto', cursive;
 }
 
 .App-logo {
