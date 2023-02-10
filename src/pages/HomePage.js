@@ -5,6 +5,10 @@ import "./HomePage.css";
 
 export default function HomePage() {
   const [charList, setCharList] = useState([]);
+  const [offline, setOffline] = useState(false);
+  useEffect(() => {
+    if (!navigator.onLine) setOffline(true);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,8 +25,23 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
-      <h1>Harry Potter PWA app</h1>
+    <div className="main">
+      <img src="logo192.png" alt="hp-logo" />
+      <h1 className="text">Harry Potter PWA app</h1>
+      <p className="text">Find all about your favorite character</p>
+      {offline && (
+        <>
+          <div className="text">
+            You are offline please connect to the internet
+          </div>
+          <button
+            className="button"
+            onClick={() => window.location.reload(true)}
+          >
+            Refresh
+          </button>
+        </>
+      )}
       {charList ? (
         <div className="container">
           {charList.map((character) => {
@@ -32,6 +51,6 @@ export default function HomePage() {
       ) : (
         "Loading"
       )}
-    </>
+    </div>
   );
 }
